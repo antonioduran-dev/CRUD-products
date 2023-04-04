@@ -54,3 +54,33 @@ export const createProduct = async (req, res) => {
     });
   }
 };
+
+//Updates a product
+export const updateProduct = async (req, res) => {
+  const id = req.params.id;
+  const { name, category, price } = req.body;
+  try {
+    //Create query to update a product
+    const [result] = await pool.query(
+      "UPDATE products SET name = IFNULL(?, name), category = IFNULL(?, category), price = IFNULL(?, price) WHERE id = ?",
+      [name, category, price, id]
+    );
+    
+    //Comprove if exists a product to update
+    if (result.affectedRows === 0)
+      return res.status(404).json({
+        message: "product not found",
+      });
+
+    //create a query to obtaine the product updated
+    const [rows] = await pool.query("SELECT * FROM products WHERE id = ?", [
+      id,
+    ]);
+    //Send the response
+    res.json(rows[0]);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong: " + error,
+    });
+  }
+};
