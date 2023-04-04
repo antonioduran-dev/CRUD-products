@@ -6,6 +6,7 @@ import {
   getProduct,
   createProduct,
   updateProduct,
+  deleteProduct,
 } from "../controllers/products.controller.js";
 
 //Create the router
@@ -16,7 +17,8 @@ router
   .get("/products", getProducts)
   .get("/products/:id", getProduct)
   .post("/products", createProduct)
-  .patch("/products/:id", updateProduct);
+  .patch("/products/:id", updateProduct)
+  .delete("/products/:id", deleteProduct);
 
 //Export the router
 export default router;

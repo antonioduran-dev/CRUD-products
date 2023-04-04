@@ -55,7 +55,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
-//Updates a product
+//Updates a product from DB
 export const updateProduct = async (req, res) => {
   const id = req.params.id;
   const { name, category, price } = req.body;
@@ -65,7 +65,7 @@ export const updateProduct = async (req, res) => {
       "UPDATE products SET name = IFNULL(?, name), category = IFNULL(?, category), price = IFNULL(?, price) WHERE id = ?",
       [name, category, price, id]
     );
-    
+
     //Comprove if exists a product to update
     if (result.affectedRows === 0)
       return res.status(404).json({
@@ -78,6 +78,26 @@ export const updateProduct = async (req, res) => {
     ]);
     //Send the response
     res.json(rows[0]);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong: " + error,
+    });
+  }
+};
+
+//Deletes a product from DB
+export const deleteProduct = async (req, res) => {
+  try {
+    const [result] = await pool.query("DELETE FROM products WHERE id = ?", [
+      req.params.id,
+    ]);
+
+    if (result.affectedRows <= 0)
+      return res.status(404).json({
+        message: "product not found",
+      });
+
+    res.sendStatus(204);
   } catch (error) {
     return res.status(500).json({
       message: "Something went wrong: " + error,
