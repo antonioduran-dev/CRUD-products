@@ -32,6 +32,12 @@ export class HomeComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
+
+  //Updates a product from DB
+  update(id: string){
+    this.router.navigate(['/update/' + id]);
+  }
+
   //Deletes a product from DB
   delete(id: string) {
     this._productsService.deleteProduct(id).subscribe({

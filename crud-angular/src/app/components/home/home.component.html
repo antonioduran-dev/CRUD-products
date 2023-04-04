@@ -21,7 +21,7 @@
           <td>{{producto.category}}</td>
           <td>{{producto.price}}</td>
           <td>
-            <button type="button" class="btn btn-primary">Edit</button>
+            <button (click)="update(producto.id)" type="button" class="btn btn-primary">Edit</button>
           </td>
           <td>
             <button (click)="delete(producto.id)" type="button" class="btn btn-danger">Delete</button>

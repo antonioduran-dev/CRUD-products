@@ -9,7 +9,7 @@ import { Producto } from 'src/app/shared/products';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-
+  //variable producto to save data from form using ngModel and create a new product
   producto: Producto = {
     name: '',
     category: '',
@@ -21,6 +21,7 @@ export class CreateComponent {
     private router: Router
   ){}
 
+  //adds a product to DB
   add(){
     this._productsService.createProduct(this.producto).subscribe({
       next: (res) => console.log(res)
