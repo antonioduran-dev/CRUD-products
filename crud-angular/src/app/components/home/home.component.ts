@@ -32,4 +32,14 @@ export class HomeComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
+  //Deletes a product from DB
+  delete(id: string) {
+    this._productsService.deleteProduct(id).subscribe({
+      next: (res) => {
+        console.log('Product deleted');
+        this.listarProducts();
+      },
+      error: (err) => console.log(err),
+    });
+  }
 }
