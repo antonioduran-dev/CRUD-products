@@ -14,11 +14,10 @@ app.use("/api", productsRoutes);
 
 //if route doesnt exist, send a message
 app.use((req, res, next) => {
-    res.status(404).json({
-      message: "endpoint not found",
-    });
+  res.status(404).json({
+    message: "endpoint not found",
   });
-  
-  
-  //Export express app
-  export default app;
+});
+
+//Export express app
+export default app;
