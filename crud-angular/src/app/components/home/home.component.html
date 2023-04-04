@@ -1,1 +1,32 @@
-<p>home works!</p>
+<div class="container">
+    <p>PRODUCTS LIST</p>
+  
+    <button routerLink="/create" type="button" class="btn btn-dark">Create</button>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">name</th>
+          <th scope="col">category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of listProduct">
+          <td scope="row">{{producto.id}}</td>
+          <td>{{producto.name}}</td>
+          <td>{{producto.category}}</td>
+          <td>{{producto.price}}</td>
+          <td>
+            <button type="button" class="btn btn-primary">Editar</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
