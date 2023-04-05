@@ -8,7 +8,7 @@ import { CreateComponent } from './components/create/create.component';
 import { UpdateComponent } from './components/update/update.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

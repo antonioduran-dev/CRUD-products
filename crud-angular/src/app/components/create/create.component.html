@@ -2,23 +2,32 @@
     <p>ADD PRODUCT</p>
 
     <div class="col-sm-4">
-        <form>
+        <form [formGroup]="formProduct" (ngSubmit)="add()">
             <div class="mb-3">
-                <label class="form-label">Name of Product</label>
-                <input [(ngModel)]="producto.name" type="text" class="form-control" name="name">
+                <label for="name" class="form-label">Name of Product</label>
+                <input type="text" id="name" formControlName="name" class="form-control">
+            </div>
+            <div class="alert alert-danger mt-2" [hidden]="name.valid || name.pristine">
+                Product name required
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Category</label>
-                <input [(ngModel)]="producto.category" type="text" class="form-control" name="category">
+                <input type="text" id="category" formControlName="category" class="form-control">
+            </div>
+            <div class="alert alert-danger mt-2" [hidden]="category.valid || category.pristine">
+                Product category required
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Price</label>
-                <input [(ngModel)]="producto.price" type="number" class="form-control" name="price">
+                <input type="number" id="price" formControlName="price" class="form-control">
+            </div>
+            <div class="alert alert-danger mt-2" [hidden]="price.valid || price.pristine">
+                Product price required
             </div>
 
-            <button (click)="add()" class="btn btn-primary">Add</button>
+            <button [disabled]="formProduct.invalid" class="btn btn-primary">Add</button>
         </form>
     </div>
 </div>
